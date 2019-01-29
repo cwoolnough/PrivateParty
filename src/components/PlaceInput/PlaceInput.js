@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
       },
       placeButton: {
         width: "30"
-      },
-})
+      }
+});
 
 export default PlaceInput;

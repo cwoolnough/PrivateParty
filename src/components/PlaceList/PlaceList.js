@@ -17,7 +17,7 @@ const placeList = (props) => {
             )}
         />
     );
-}
+};
     
 const styles = StyleSheet.create({
     listContainer: {
