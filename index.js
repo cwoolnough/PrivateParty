@@ -12,4 +12,4 @@ const RNRedux = () => (
     </Provider>
 );
 
-AppRegistry.registerComponent("PrivateParty", () => RNRedux);
+AppRegistry.registerComponent('PrivateParty', () => RNRedux);

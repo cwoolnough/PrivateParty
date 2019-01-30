@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
-import { connect } from 'react-native';
+import { connect } from 'react-redux';
 
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
