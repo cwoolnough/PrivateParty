@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { connect } from 'react-redux';
 
 import PlaceList from '../../components/PlaceList/PlaceList';
 
 class FindPlaceScreen extends Component {
+    static navigatorStyle = {
+        navBarButtonColor: "orange"
+    };
+
+    state = {
+        placesLoaded: false,
+        removeAnimation: new Animated.Value(1)
+    }
+
     constructor(props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     }
+
 
     onNavigatorEvent = (e) => {
         if (e.type === "NavBarButtonPress") {
@@ -18,6 +28,14 @@ class FindPlaceScreen extends Component {
                 });
             }
         }
+    }
+
+    placesSearchHandler = () => {
+        Animated.timing(this.state.removeAnimation, {
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true
+        }).start();
     }
 
     itemSelectedHandler = key => {
@@ -34,13 +52,58 @@ class FindPlaceScreen extends Component {
     }
 
     render() {
-        return (
-            <View>
+        let content = (
+            <Animated.View
+                style={{
+                    opacity: this.state.removeAnimation,
+                    transform: [
+                        {
+                            scale: this.state.removeAnimation.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [10, 1]
+                            })
+                        }
+                    ]
+                }}>
+                <TouchableOpacity onPress={this.placesSearchHandler}>
+                    <View style={styles.searchButton}>
+                        <Text styles={styles.searchButtonText}>Find Places</Text>
+                    </View>
+                </TouchableOpacity>
+            </Animated.View>
+        );
+
+        if (this.state.placesLoaded) {
+            content = (
                 <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />
+            );
+        }
+        return (
+            <View style={this.state.placeLoaded ? null : styles.buttonContainer}>
+                {content}
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    buttonContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    searchButton: {
+        borderColor: "orange",
+        borderWidth: 3,
+        borderRadius: 50, 
+        padding: 20  
+    },
+    searchButtonText: {
+        color: "orange",
+        fontWeight: "bold",
+        fontSize: 26
+    }
+})
 
 const mapStateToProps = state => {
     return {
