@@ -105,6 +105,10 @@ const styles = StyleSheet.create({
     },
     button: {
         margin: 8
+    },
+    previewImage: {
+        width: "100%",
+        height: "100%"
     }
 })
 
