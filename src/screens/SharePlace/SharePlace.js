@@ -14,11 +14,11 @@ import { startAddPlace } from '../../store/actions/index';
 class SharePlaceScreen extends Component {
     static navigatorStyle = {
         navBarButtonColor: "blue"
-    }
+    };
 
     constructor(props) {
         super(props);
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
 
     componentWillMount() {
@@ -58,7 +58,7 @@ class SharePlaceScreen extends Component {
     onNavigatorEvent = (e) => {
         if(e.type === "ScreenChangedEvent") {
             if (e.id === "willAppear") {
-                this.props.onStartAddPlace
+                this.props.onStartAddPlace();
             }
         }
         if (e.type === "NavBarButtonPress") {
