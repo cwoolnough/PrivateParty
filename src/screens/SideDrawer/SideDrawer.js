@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     drawerItemIcon: {
         marginRight: 10
     }
-
 })
 
 

@@ -3,10 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native
 import { connect } from 'react-redux';
 
 import PlaceList from '../../components/PlaceList/PlaceList';
+import { getPlaces } from '../../store/actions/index';
 
 class FindPlaceScreen extends Component {
     static navigatorStyle = {
-        navBarButtonColor: "orange"
+        navBarButtonColor: "blue"
     };
 
     state = {
@@ -18,6 +19,10 @@ class FindPlaceScreen extends Component {
     constructor(props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+    }
+
+    componentDidMount() {
+        this.props.onLoadPlaces();
     }
 
 
@@ -41,7 +46,7 @@ class FindPlaceScreen extends Component {
 
     placesSearchHandler = () => {
         Animated.timing(this.state.removeAnimation, {
-            toValue: 1,
+            toValue: 0,
             duration: 500,
             useNativeDriver: true
         }).start(() => {
@@ -116,13 +121,13 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     searchButton: {
-        borderColor: "orange",
+        borderColor: "blue",
         borderWidth: 3,
         borderRadius: 50, 
         padding: 20  
     },
     searchButtonText: {
-        color: "orange",
+        color: "blue",
         fontWeight: "bold",
         fontSize: 26
     }
@@ -134,4 +139,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(FindPlaceScreen);
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoadPlaces: () => dispatch(getPlaces())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindPlaceScreen);
