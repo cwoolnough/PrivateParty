@@ -150,11 +150,11 @@ class SharePlaceScreen extends Component {
                     </MainText>
                     <PickImage 
                         onImagePicked={this.imagePickedHandler} 
-                        ref={ref => (this.imagePicker = ref)} 
+                        ref={ref => this.imagePicker = ref} 
                     />
                     <PickLocation 
                         onLocationPick={this.locationPickedHandler} 
-                        ref={ref => (this.locationPicker = ref)} 
+                        ref={ref => this.locationPicker = ref} 
                     />
                     <PlaceInput
                         placeData={this.state.controls.placeName}

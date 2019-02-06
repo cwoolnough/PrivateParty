@@ -51,8 +51,8 @@ exports.storeImage = functions.https.onRequest((request, response) => {
     });
 });
 
-exports.deleteImage = functions.database.ref("/places/{placeId}").onDelete(e => {
-    const placeData = e.data.previous.val();
+exports.deleteImage = functions.database.ref("/places/{placeId}").onDelete(event => {
+    const placeData = event.data.previous.val();
     const imagePath = placeData.imagePath;
 
     const bucket = gcs.bucket("private-party-4d2e9.appspot.com")
