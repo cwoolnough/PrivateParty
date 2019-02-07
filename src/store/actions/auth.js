@@ -135,7 +135,7 @@ export const authGetToken = () => {
             } else {
                 return token;
             }
-        })
+        });
     };
 };
 
