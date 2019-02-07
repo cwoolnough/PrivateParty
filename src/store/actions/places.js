@@ -9,17 +9,22 @@ export const startAddPlace = () => {
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
+        let authToken;
         dispatch(uiStartLoading());
         dispatch(authGetToken())
         .catch(() => {
             alert("No valid toke found")
         })
         .then(token => {
+            authToken = token;
             return fetch("https://us-central1-private-party-4d2e9.cloudfunctions.net/storeImage", {
                 method: 'POST',
                 body: JSON.stringify({
                     image: image.base64
-                })
+                }),
+                headers: {
+                    "Authorization": "Bearer " + authToken
+                }
             })
         })
         .catch(err => {
@@ -36,7 +41,7 @@ export const addPlace = (placeName, location, image) => {
                 image: parsedRes.imageUrl,
                 imagePath: parsedRes.imagePath
             };
-            return fetch("https://private-party-4d2e9.firebaseio.com/places.json", {
+            return fetch("https://private-party-4d2e9.firebaseio.com/places.json?auth=" + authToken, {
                 method: "POST",
                 body: JSON.stringify(placeData)
             })
@@ -87,7 +92,6 @@ export const getPlaces = () => {
                 alert("Something went wrong, sorry");
                 console.log(err);
             });
-
     };
 }
 
