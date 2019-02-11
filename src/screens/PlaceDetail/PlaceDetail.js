@@ -90,6 +90,7 @@ class PlaceDetail extends Component {
 const styles = StyleSheet.create({
     container: {
       margin: 22,
+      padding: 22,
       flex: 1
     },
     portraitContainer: {

@@ -5,6 +5,9 @@ export const START_ADD_PLACE = "START_ADD_PLACE";
 
 export const TRY_AUTH = "TRY_AUTH";
 
+export const ADD_PARTY = "ADD_PARTY";
+export const DELETE_PARTY = "DELETE_PARTY";
+
 export const UI_START_LOADING = "UI_START_LOADING";
 export const UI_STOP_LOADING = "UI_STOP_LOADING";
 

@@ -10,8 +10,8 @@ class PickLocation extends Component {
     reset = () => {
         this.setState({
             focusedLocation: {
-                latitude: 37.7900352,
-                longitude: -122.4013726,
+                latitude: 51.507351,
+                longitude: -0.127758,
                 latitudeDelta: 0.0122,
                 longitudeDelta: Dimensions.get("window").width / Dimensions.get("window").height * 0.0122
             },
