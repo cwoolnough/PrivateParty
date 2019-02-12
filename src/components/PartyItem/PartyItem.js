@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const partyItem = (props) => {
     return (
-        <TouchableOpacity onPress={props.onPartyPressed}>
+        <TouchableOpacity onPress={props.onItemPressed}>
             <View style={styles.partyItem}>
                 <Text>{props.partyName}</Text>
             </View>

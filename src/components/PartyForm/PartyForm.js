@@ -1,57 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-class PartyForm extends Component {
-    state = {
-        partyName: ""
-    }
+import DefaultInput from "../UI/DefaultInput/DefaultInput";
 
-    partyNameChangedHandler = (val) => {
-        this.setState({
-            partyName: val
-        });
-    };
-
-    partySubmitHandler = () => {
-        if (this.state.partyName.trim() === "") {
-            return;
-        }
-        this.props.onPartyAdded(this.state.partyName)
-    };
-
-    render() {
+const PartyForm = props =>  {
         return (
-            <View style={styles.formContainer}>
-                <TextInput
-                    placeholder="Party Name"
-                    value={this.state.partyName}
-                    onChangeText={this.partyNameChangedHandler}  
-                    style={styles.partyInput}         
-                />
-                <Button 
-                    title='Add'
-                    style={styles.partyButton} 
-                    onPress={this.partySubmitHandler} 
-                />
-            </View>
+            <DefaultInput
+                placeholder="Party Name"
+                value={props.partyName}
+                onChangeText={props.onChangeText}
+            />
         );
-    }
 }
-
-const styles = StyleSheet.create({
-    formContainer: {
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
-        
-    },
-    partyInput: {
-        width: '70%',  
-    },
-    partyButton: {
-        width: "30%"
-    }
-});
 
 export default PartyForm;
