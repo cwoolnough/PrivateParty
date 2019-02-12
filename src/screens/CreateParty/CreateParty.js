@@ -6,8 +6,23 @@ import PartyForm from '../../components/PartyForm/PartyForm';
 import { addParty } from '../../store/actions/index'
 
 class CreatePartyScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+    }
+
+    onNavigatorEvent = (e) => {
+        if (e.type === "NavBarButtonPress") {
+            if (e.id === "sideDrawerToggle") {
+                this.props.navigator.toggleDrawer({
+                    side: "left"
+                });
+            }
+        }
+    }
+
     partyAddedHandler = (partyName) => {
-        this.props.onPartyAdded(partyName)
+        this.props.onAddParty(partyName)
     }
 
     render() {
@@ -21,8 +36,7 @@ class CreatePartyScreen extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPlace: (partyName) => 
-            dispatch(addPlace(partyName)),
+        onAddParty: (partyName) => dispatch(addParty(partyName))
     };
 };
 

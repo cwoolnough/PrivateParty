@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 parties: state.parties.filter(party => {
-                    return place.key !== action.partyKey;
+                    return party.key !== action.partyKey;
                 })
             };
         default:
