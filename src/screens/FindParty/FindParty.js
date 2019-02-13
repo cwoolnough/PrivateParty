@@ -55,6 +55,7 @@ class FindPartyScreen extends Component {
         const selParty = this.props.parties.find(party => {
             return party.key === key;
         });
+        
         this.props.navigator.push({
             screen: "private-party.PartyDetailScreen",
             title: selParty.name,

@@ -9,7 +9,11 @@ import HeadingText from '../../components/UI/HeadingText/HeadingText';
 
 class CreatePartyScreen extends Component {
     state = {
-        partyName: ""
+        partyName: "",
+        partyLocation: "",
+        partyDate: "",
+        partyTime: "",
+        partySecret: ""
     }
 
     constructor(props) {
@@ -27,15 +31,17 @@ class CreatePartyScreen extends Component {
         }
     };
 
-    partyNameChangedHandler = val => {
+    partyNameChangedHandler = (stateItem, val) => {
+        console.log(val)
         this.setState({
-            partyName: val
+            [stateItem]: val
         });
     };
 
     partyAddedHandler = () => {
+        const { partyName, partyLocation, partyDate, partyTime, partySecret } = this.state
         if (this.state.partyName.trim() !== "") {
-            this.props.onAddParty(this.state.partyName);
+            this.props.onAddParty(partyName, partyLocation, partyDate, partyTime, partySecret)
         }    
     };
 
@@ -45,10 +51,7 @@ class CreatePartyScreen extends Component {
                 <MainText>
                     <HeadingText>Create Your Party</HeadingText>
                 </MainText>
-                <PartyForm 
-                    partyName={this.state.partyName}
-                    onChangeText={this.partyNameChangedHandler}
-                />
+                <PartyForm partyName={this.state.partyName} onChangeText={this.partyNameChangedHandler} />
                 <View style={styles.button}>
                     <Button title="Share Party" onPress={this.partyAddedHandler} />
                 </View>
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddParty: (partyName) => dispatch(addParty(partyName))
+        onAddParty: (partyName, partyLocation, partyDate, partyTime, partySecret) => dispatch(addParty(partyName, partyLocation, partyDate, partyTime, partySecret))
     };
 };
 

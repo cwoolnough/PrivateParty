@@ -114,6 +114,7 @@ class FindPlaceScreen extends Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,

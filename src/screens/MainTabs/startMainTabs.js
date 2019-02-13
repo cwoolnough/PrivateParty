@@ -6,9 +6,9 @@ const startTabs = () => {
     Promise.all([
         Icon.getImageSource(Platform.OS === 'android' ? "md-map" : "ios-map", 30),
         Icon.getImageSource(Platform.OS === 'android' ? "md-share-alt" : "ios-share", 30),
-        Icon.getImageSource(Platform.OS === 'android' ? "md-menu" : "ios-menu", 30),
         Icon.getImageSource(Platform.OS === 'android' ? "md-create" : "ios-create", 30),
-        Icon.getImageSource(Platform.OS === 'android' ? "md-wine" : "ios-wine", 30)
+        Icon.getImageSource(Platform.OS === 'android' ? "md-wine" : "ios-wine", 30),
+        Icon.getImageSource(Platform.OS === 'android' ? "md-menu" : "ios-menu", 30)   
     ]).then(sources => {
         Navigation.startTabBasedApp({
             tabs: [
@@ -20,7 +20,7 @@ const startTabs = () => {
                     navigatorButtons: {
                         leftButtons: [
                             {
-                               icon: sources[2],
+                               icon: sources[4],
                                title: "Menu",
                                id: "sideDrawerToggle" 
                             }
@@ -35,7 +35,7 @@ const startTabs = () => {
                     navigatorButtons: {
                         leftButtons: [
                             {
-                               icon: sources[2],
+                               icon: sources[4],
                                title: "Menu",
                                id: "sideDrawerToggle"  
                             }
@@ -45,12 +45,12 @@ const startTabs = () => {
                 {
                     screen: "private-party.CreatePartyScreen",
                     label: "Create Party",
-                    title: "Create Party",
-                    icon: sources[3],
+                    title: "Create Your Party",
+                    icon: sources[2],
                     navigatorButtons: {
                         leftButtons: [
                             {
-                               icon: sources[2],
+                               icon: sources[4],
                                title: "Menu",
                                id: "sideDrawerToggle"  
                             }
@@ -61,11 +61,11 @@ const startTabs = () => {
                     screen: "private-party.FindPartyScreen",
                     label: "Find Party",
                     title: "Find Party",
-                    icon: sources[4],
+                    icon: sources[3],
                     navigatorButtons: {
                         leftButtons: [
                             {
-                               icon: sources[2],
+                               icon: sources[4],
                                title: "Menu",
                                id: "sideDrawerToggle"  
                             }

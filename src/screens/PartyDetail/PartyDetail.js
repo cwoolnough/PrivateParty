@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, Platform, Dimensions } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, Platform, Dimensions, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { deleteParty } from '../../store/actions/index';
+import defaultInput from '../../components/UI/DefaultInput/DefaultInput';
 
 class PartyDetail extends Component {
     state = {
-        viewMode: "portrait"
+        viewMode: "portrait",
+        secret: false
     };
 
     constructor(props) {
@@ -31,6 +33,7 @@ class PartyDetail extends Component {
     }
 
     render() {
+        console.log("party detail props:", this.props)
         return (
             <View
                 style={[
@@ -40,11 +43,14 @@ class PartyDetail extends Component {
                         : styles.landscapeContainer
                 ]}
             >
+            {this.state.secret === true ? 
                 <View style={styles.subContainer}>
                     <View>
-                        <Text style={styles.partyName}>
-                            {this.props.selectedParty.name}
-                        </Text>
+                        <Text style={styles.partyName}>{this.props.selectedParty.name}</Text>
+                        <Text style={styles.partyLocation}>{this.props.selectedParty.location}</Text>
+                        <Text style={styles.partyDate}>{this.props.selectedParty.date}</Text>
+                        <Text style={styles.partyTime}>{this.props.selectedParty.time}</Text>
+                        <Text style={styles.partySecret}>{this.props.selectedParty.secret}</Text>
                     </View>
                     <View>
                         <TouchableOpacity onPress={this.partyDeletedHandler}>
@@ -58,6 +64,11 @@ class PartyDetail extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                : 
+                <View>
+                    <TextInput />
+                    <Button />
+                </View>}
             </View>
         )
     }
@@ -72,12 +83,27 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 28
     },
+    partyLocation: {
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 28
+    },
+    partyDate: {
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 28
+    },
+    partyTime: {
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 28
+    },
     deleteButton: {
       alignItems: "center"
-    },
-    subContainer: {
-      flex: 1
     }
+    // subContainer: {
+    //   flex: 1
+    // }
 });
 
 const mapDispatchToProps = (dispatch) => {

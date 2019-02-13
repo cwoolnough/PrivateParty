@@ -10,7 +10,11 @@ const PartyList = (props) => {
             data={props.parties}
             renderItem={(info) => (
                 <PartyItem 
-                    partyName={info.item.name} 
+                    partyName={info.item.name}
+                    partyLocation={info.item.location} 
+                    partyDate={info.item.date} 
+                    partyTime={info.item.time} 
+                    partySecret={info.item.secret} 
                     onItemPressed={() => props.onItemSelected(info.item.key)} 
                 />
             )}
