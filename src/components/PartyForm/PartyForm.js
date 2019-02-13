@@ -5,9 +5,10 @@ import DefaultInput from "../UI/DefaultInput/DefaultInput";
 
 const PartyForm = (props) => {
     return (
-        <View>
+        <View style={styles.formInput}>
             <DefaultInput
                 placeholder="Party Name"
+                value={props.partyName}
                 onChangeText={(val) => props.onChangeText("partyName", val)}
             />
             <DefaultInput
@@ -33,5 +34,16 @@ const PartyForm = (props) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    formInput: {
+        width: "80%",
+        // borderColor: "blue",
+        // borderWidth: 1,
+        // // flex: 1,
+        
+        
+    }
+})
 
 export default PartyForm;

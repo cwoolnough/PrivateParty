@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     },
     placeholder: {
         borderWidth: 1,
-        borderColor: "black",
+        borderColor: "#eee",
         backgroundColor: "#eee",
-        width: "80%",
+        width: "90%",
         height: 150
     },
     button: {

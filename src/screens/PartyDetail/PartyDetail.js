@@ -9,7 +9,8 @@ import defaultInput from '../../components/UI/DefaultInput/DefaultInput';
 class PartyDetail extends Component {
     state = {
         viewMode: "portrait",
-        secret: false
+        secret: false,
+        secretPassword: ''
     };
 
     constructor(props) {
@@ -32,8 +33,23 @@ class PartyDetail extends Component {
         this.props.navigator.pop()
     }
 
+    secretPasswordText = (value) => {
+        console.log(value)
+        this.setState({
+            secretPassword: value
+        })
+    }
+
+    onSubmitSecret = () => {
+        this.state.secretPassword === this.props.selectedParty.secret ?
+            this.setState({
+                secret: true
+            })
+        :
+        alert("Wrong Password, please try again!")
+    }
+
     render() {
-        console.log("party detail props:", this.props)
         return (
             <View
                 style={[
@@ -44,7 +60,7 @@ class PartyDetail extends Component {
                 ]}
             >
             {this.state.secret === true ? 
-                <View style={styles.subContainer}>
+                <View>
                     <View>
                         <Text style={styles.partyName}>{this.props.selectedParty.name}</Text>
                         <Text style={styles.partyLocation}>{this.props.selectedParty.location}</Text>
@@ -66,8 +82,12 @@ class PartyDetail extends Component {
                 </View>
                 : 
                 <View>
-                    <TextInput />
-                    <Button />
+                    <TextInput 
+                        onChangeText={this.secretPasswordText} 
+                    />
+                    <View>
+                        <Button title="Enter Party Secret" onPress={this.onSubmitSecret} />
+                    </View>
                 </View>}
             </View>
         )
@@ -101,9 +121,6 @@ const styles = StyleSheet.create({
     deleteButton: {
       alignItems: "center"
     }
-    // subContainer: {
-    //   flex: 1
-    // }
 });
 
 const mapDispatchToProps = (dispatch) => {
