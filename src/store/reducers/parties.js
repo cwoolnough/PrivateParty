@@ -1,7 +1,8 @@
-import { ADD_PARTY, DELETE_PARTY } from '../actions/actionTypes';
+import { ADD_PARTY, DELETE_PARTY , SELECT_PARTY} from '../actions/actionTypes';
 
 const initialState = {
-    parties: []
+    parties: [],
+    currentPartyId: null
 };
 
 
@@ -19,7 +20,12 @@ const reducer = (state = initialState, action) => {
                     time: action.partyTime,
                     secret: action.partySecret
                 })
-            }
+            };
+        case SELECT_PARTY:
+            return {
+                ...state,
+                currentPartyId: action.party_id
+            };
         case DELETE_PARTY:
             return {
                 ...state,

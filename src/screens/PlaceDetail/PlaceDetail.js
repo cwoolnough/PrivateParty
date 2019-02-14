@@ -110,13 +110,16 @@ const styles = StyleSheet.create({
     placeName: {
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 28
+      margin: 10,
+      fontSize: 28,
+      color: '#5f6775'
     },
     map: {
       ...StyleSheet.absoluteFillObject
     },
     deleteButton: {
-      alignItems: "center"
+      alignItems: "center",
+      marginTop: 30
     },
     subContainer: {
       flex: 1

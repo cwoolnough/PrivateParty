@@ -118,7 +118,8 @@ class SharePlaceScreen extends Component {
         this.props.onAddPlace(
             this.state.controls.placeName.value, 
             this.state.controls.location.value,
-            this.state.controls.image.value
+            this.state.controls.image.value,
+            this.props.party_id
          );
          this.reset();
          this.imagePicker.reset();
@@ -141,7 +142,7 @@ class SharePlaceScreen extends Component {
         if (this.props.isLoading) {
             submitButton = <ActivityIndicator />
         }
-
+        console.log(this.props)
         return (
             <ScrollView>
                 <View style={styles.container}>
@@ -191,14 +192,15 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
     return {
         isLoading: state.ui.isLoading,
-        placeAdded: state.places.placeAdded
+        placeAdded: state.places.placeAdded,
+        party_id: state.parties.currentPartyId 
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPlace: (placeName, location, image) => 
-            dispatch(addPlace(placeName, location, image)),
+        onAddPlace: (placeName, location, image, party_id) => 
+            dispatch(addPlace(placeName, location, image, party_id)),
             onStartAddPlace: () => dispatch(startAddPlace())
     };
 };

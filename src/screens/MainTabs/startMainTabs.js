@@ -59,8 +59,8 @@ const startTabs = () => {
                 },
                 {
                     screen: "private-party.FindPartyScreen",
-                    label: "Find Party",
-                    title: "Find Party",
+                    label: "Parties",
+                    title: "Parties",
                     icon: sources[3],
                     navigatorButtons: {
                         leftButtons: [

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { deleteParty } from '../../store/actions/index';
 import defaultInput from '../../components/UI/DefaultInput/DefaultInput';
+import SharePlace from '../SharePlace/SharePlace';
+import { selectParty } from '../../store/actions/parties';
 
 class PartyDetail extends Component {
     state = {
@@ -44,12 +46,17 @@ class PartyDetail extends Component {
         this.state.secretPassword === this.props.selectedParty.secret ?
             this.setState({
                 secret: true
-            })
+            }, () => this.props.onSelectParty(this.props.selectedParty.key))
+            
         :
         alert("Wrong Password, please try again!")
     }
 
+    
+
+
     render() {
+        console.log("show detail props,", this.props)
         return (
             <View
                 style={[
@@ -97,26 +104,47 @@ class PartyDetail extends Component {
 const styles = StyleSheet.create({
     container: {
       margin: 30,
+      backgroundColor: '#eee'
     },
     partyName: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: "#eee",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 28
+        fontSize: 20
     },
     partyLocation: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: "#eee",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 28
+        fontSize: 20
     },
     partyDate: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: "#eee",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 28
+        fontSize: 20
     },
     partyTime: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: "#eee",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 28
+        fontSize: 20
+    },
+    partySecret: {
+        width: "100%",
+        borderWidth: 1,
+        borderColor: "#eee",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 20
     },
     deleteButton: {
       alignItems: "center"
@@ -125,7 +153,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDeleteParty: (key) => dispatch(deleteParty(key))
+        onDeleteParty: (key) => dispatch(deleteParty(key)),
+        onSelectParty: (key) => dispatch(selectParty(key))
     }
 }
 
