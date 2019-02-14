@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, Platform, Dimensions, TextInput } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, Platform, Dimensions, TextInput, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,7 +12,7 @@ class PartyDetail extends Component {
     state = {
         viewMode: "portrait",
         secret: false,
-        secretPassword: ''
+        secretPassword: '',
     };
 
     constructor(props) {
@@ -52,9 +52,6 @@ class PartyDetail extends Component {
         alert("Wrong Password, please try again!")
     }
 
-    
-
-
     render() {
         console.log("show detail props,", this.props)
         return (
@@ -75,6 +72,8 @@ class PartyDetail extends Component {
                         <Text style={styles.partyTime}>{this.props.selectedParty.time}</Text>
                         <Text style={styles.partySecret}>{this.props.selectedParty.secret}</Text>
                     </View>
+                    {this.props.places.filter(place => place.party_id === this.props.selectedParty.key).map(place => <Image source={place.image} />)}
+
                     <View>
                         <TouchableOpacity onPress={this.partyDeletedHandler}>
                             <View style={styles.deleteButton}>
@@ -151,6 +150,12 @@ const styles = StyleSheet.create({
     }
 });
 
+const mapStateToProps = state => {
+    return {
+        places: state.places.places
+    };
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onDeleteParty: (key) => dispatch(deleteParty(key)),
@@ -158,4 +163,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(PartyDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(PartyDetail);
